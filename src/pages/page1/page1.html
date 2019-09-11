@@ -1,0 +1,160 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons start>
+      <button ion-button icon-right>
+        <ion-icon name=""></ion-icon>
+        Tổng : {{ total | number:0}}
+      </button>
+    </ion-buttons>
+    <ion-title></ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page1">
+  <ion-list id="page1-list2">
+    <ion-item color="none" id="page1-list-item4">
+      <ion-thumbnail item-left>
+        <img src="assets/img/xN7MjWeFSEOBF9GNazes_test1.jpg" />
+      </ion-thumbnail>
+      <h2>
+        nem
+      </h2>
+      <h2>
+        {{ price1 }} đ
+      </h2>
+      <ion-note item-right  color="secondary" [hidden]="menu1 == 0"> 
+        {{ menu1 }}
+      </ion-note>
+      <button item-right fill="clear"  (click)='increaseValue($event, "menu1", price1)' style="background-color: transparent;">
+          <ion-icon ios="ios-add-circle" md="md-add-circle" style="zoom:1.7;">
+          </ion-icon>
+      </button>
+
+      <button item-right fill="clear"  (click)='decreaseValue($event, "menu1", price1)' style="background-color: transparent;">
+          <ion-icon ios="ios-remove-circle" md="md-remove-circle" style="zoom:1.7;"></ion-icon>
+      </button>
+
+    </ion-item>
+    <ion-item color="none" id="page1-list-item5">
+      <ion-thumbnail item-left>
+        <img src="assets/img/I5c0m0WT12kxq04ShNmL_test2.jpg" />
+      </ion-thumbnail>
+      <h2>
+        cơm
+      </h2>
+            <h2>
+        {{ price2 }} đ
+      </h2>
+
+      <ion-note item-right  color="secondary" [hidden]="menu2 == 0"> 
+        {{ menu2 }}
+      </ion-note>
+      <button item-right fill="clear"  (click)='increaseValue($event, "menu2", price2)' style="background-color: transparent;">
+          <ion-icon ios="ios-add-circle" md="md-add-circle" style="zoom:1.7;">
+          </ion-icon>
+      </button>
+
+              <button item-right fill="clear"  (click)='decreaseValue($event, "menu2", price2)' style="background-color: transparent;">
+          <ion-icon ios="ios-remove-circle" md="md-remove-circle" style="zoom:1.7;"></ion-icon>
+      </button>
+
+    </ion-item>
+    <ion-item color="none" id="page1-list-item7">
+      <ion-thumbnail item-left>
+        <img src="assets/img/xN7MjWeFSEOBF9GNazes_test1.jpg" />
+      </ion-thumbnail>
+      <h2>
+        nem
+      </h2>
+            <h2>
+        {{ price3 }} đ
+      </h2>
+
+      <ion-note item-right  color="secondary" [hidden]="menu3 == 0"> 
+        {{ menu3 }}
+      </ion-note>
+      <button item-right fill="clear"  (click)='increaseValue($event, "menu3", price3)' style="background-color: transparent;">
+          <ion-icon ios="ios-add-circle" md="md-add-circle" style="zoom:1.7;">
+          </ion-icon>
+      </button>
+
+      <button item-right fill="clear"  (click)='decreaseValue($event, "menu3", price3)' style="background-color: transparent;">
+          <ion-icon ios="ios-remove-circle" md="md-remove-circle" style="zoom:1.7;"></ion-icon>
+      </button>
+
+    </ion-item>
+    <ion-item color="none" id="page1-list-item8">
+      <ion-thumbnail item-left>
+        <img src="assets/img/I5c0m0WT12kxq04ShNmL_test2.jpg" />
+      </ion-thumbnail>
+      <h2>
+        cơm
+      </h2>
+            <h2>
+        {{ price4 }} đ
+      </h2>
+
+      <ion-note item-right  color="secondary" [hidden]="menu4 == 0"> 
+        {{ menu4 }}
+      </ion-note>
+      <button item-right fill="clear"  (click)='increaseValue($event, "menu4", price4)' style="background-color: transparent;">
+          <ion-icon ios="ios-add-circle" md="md-add-circle" style="zoom:1.7;">
+          </ion-icon>
+      </button>
+
+      <button item-right fill="clear"  (click)='decreaseValue($event, "menu4", price4)' style="background-color: transparent;">
+          <ion-icon ios="ios-remove-circle" md="md-remove-circle" style="zoom:1.7;"></ion-icon>
+      </button>
+
+    </ion-item>
+    <ion-item color="none" id="page1-list-item9">
+      <ion-thumbnail item-left>
+        <img src="assets/img/xN7MjWeFSEOBF9GNazes_test1.jpg" />
+      </ion-thumbnail>
+      <h2>
+        nem
+      </h2>
+            <h2>
+        {{ price5 }} đ
+      </h2>
+
+      <ion-note item-right  color="secondary" [hidden]="menu5 == 0"> 
+        {{ menu5 }}
+      </ion-note>
+      <button item-right fill="clear"  (click)='increaseValue($event, "menu5", price5)' style="background-color: transparent;">
+          <ion-icon ios="ios-add-circle" md="md-add-circle" style="zoom:1.7;">
+          </ion-icon>
+      </button>
+
+            <button item-right fill="clear"  (click)='decreaseValue($event, "menu5", price5)' style="background-color: transparent;">
+          <ion-icon ios="ios-remove-circle" md="md-remove-circle" style="zoom:1.7;"></ion-icon>
+      </button>
+
+    </ion-item>
+    <ion-item color="none" id="page1-list-item10">
+      <ion-thumbnail item-left>
+        <img src="assets/img/I5c0m0WT12kxq04ShNmL_test2.jpg" />
+      </ion-thumbnail>
+      <h2>
+        cơm
+      </h2>
+            <h2>
+        {{ price6 }} đ
+      </h2>
+
+      <ion-note item-right  color="secondary" [hidden]="menu6 == 0"> 
+        {{ menu6 }}
+      </ion-note>
+      <button item-right fill="clear"  (click)='increaseValue($event, "menu6", price6)' style="background-color: transparent;">
+          <ion-icon ios="ios-add-circle" md="md-add-circle" style="zoom:1.7;">
+          </ion-icon>
+      </button>
+
+            <button item-right fill="clear"  (click)='decreaseValue($event, "menu6", price6)' style="background-color: transparent;">
+          <ion-icon ios="ios-remove-circle" md="md-remove-circle" style="zoom:1.7;"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+</ion-content>
