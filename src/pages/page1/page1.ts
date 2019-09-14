@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { ModalController, NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-page1',
@@ -65,3 +66,5 @@ export class Page1Page {
   }
   
 }
+
+
