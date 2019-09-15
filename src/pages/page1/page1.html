@@ -4,6 +4,12 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-buttons start>
+       <!--  <div *ngIf="madalDismissData">
+     Data returned by Modal ::  {{madalDismissData}}
+  </div> -->
+ 
+  <button ion-button (click)="openModal()" color="secondary">Order</button>
+
       <button ion-button icon-right>
         <ion-icon name=""></ion-icon>
         Tổng : {{ total | number:0}}
@@ -49,6 +55,10 @@
       </ion-thumbnail>
       <h2>
         cơm
+        
+      </h2>
+      <h2>
+        為了避免由簡體字轉為
       </h2>
             <h2>
         {{ price2 }} đ
@@ -73,6 +83,10 @@
       </ion-thumbnail>
       <h2>
         nem
+        
+      </h2>
+      <h2>
+        體原文保存「原
       </h2>
             <h2>
         {{ price3 }} đ
@@ -97,6 +111,10 @@
       </ion-thumbnail>
       <h2>
         cơm
+        
+      </h2>
+            <h2>
+        繁體字保存
       </h2>
             <h2>
         {{ price4 }} đ
@@ -121,6 +139,10 @@
       </ion-thumbnail>
       <h2>
         nem
+        
+      </h2>
+                  <h2>
+        字轉換產生
       </h2>
             <h2>
         {{ price5 }} đ
@@ -146,6 +168,9 @@
       <h2>
         cơm
       </h2>
+                        <h2>
+        等鹿, 鹿
+      </h2>
             <h2>
         {{ price6 }} đ
       </h2>
@@ -162,5 +187,34 @@
           <ion-icon ios="ios-remove-circle" md="md-remove-circle" style="zoom:1.7;"></ion-icon>
       </button>
     </ion-item>
+
+    <ion-item color="none" id="page1-list-item11">
+      <ion-thumbnail item-left>
+        <img src="assets/img/trau.jpg" imageViewer />
+      </ion-thumbnail>
+      <h2>
+        thịt trâu
+      </h2>
+                        <h2>
+        等鹿, 鹿轉換產
+      </h2>
+            <h2>
+        {{ price7 }} đ
+      </h2>
+
+      <ion-note item-right  color="secondary" [hidden]="menu7 == 0"> 
+        {{ menu7 }}
+      </ion-note>
+      <button item-right fill="clear"  (click)="openSelection(obj7)" style="background-color: transparent;">
+          <ion-icon ios="ios-add-circle" md="md-add-circle" style="zoom:1.7;">
+          </ion-icon>
+      </button>
+
+        <button item-right fill="clear"  (click)='decreaseValue($event, "menu7", price7)' style="background-color: transparent;">
+          <ion-icon ios="ios-remove-circle" md="md-remove-circle" style="zoom:1.7;"></ion-icon>
+      </button>
+    </ion-item>
+
+
   </ion-list>
 </ion-content>

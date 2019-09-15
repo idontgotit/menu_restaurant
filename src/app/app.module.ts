@@ -10,6 +10,9 @@ import { CloudPage } from '../pages/cloud/cloud';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
+import { NewModalPageModule } from '../pages/new-modal/new-modal.module';
+
+import { SelectionPageModule } from '../pages/selection/selection.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,8 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
   imports: [
     BrowserModule,
     IonicImageViewerModule,
+    NewModalPageModule,
+    SelectionPageModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

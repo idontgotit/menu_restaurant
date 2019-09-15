@@ -1,0 +1,186 @@
+<!--
+  Generated template for the NewModalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Order</ion-title>
+        <ion-buttons start>
+
+	 
+	  <button ion-button (click)="dismissModal()" icon-right>Close</button>
+
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list id="page1-list3">
+    <ion-item color="none" id="page1-list-item4" [hidden]="menu1 == 0">
+      <ion-thumbnail item-left>
+        <img src="assets/img/xN7MjWeFSEOBF9GNazes_test1.jpg" imageViewer />
+      </ion-thumbnail>
+      <h2>
+        nem
+      </h2>
+            <h2>
+        English Tenses
+      </h2>
+            <h2>
+        可通過每頁左上角的連結隨時調整
+      </h2>
+      <h2>
+        {{ price1 }} đ
+      </h2>
+      <ion-note item-right  color="secondary" [hidden]="menu1 == 0"> 
+        {{ menu1 }}
+      </ion-note>
+
+    </ion-item>
+    <ion-item color="none" id="page1-list-item5"  [hidden]="menu2 == 0">
+      <ion-thumbnail item-left>
+        <img src="assets/img/I5c0m0WT12kxq04ShNmL_test2.jpg"  imageViewer />
+      </ion-thumbnail>
+      <h2>
+        cơm
+        
+      </h2>
+      <h2>
+        為了避免由簡體字轉為
+      </h2>
+            <h2>
+        {{ price2 }} đ
+      </h2>
+
+      <ion-note item-right  color="secondary" [hidden]="menu2 == 0"> 
+        {{ menu2 }}
+      </ion-note>
+
+
+    </ion-item >
+    <ion-item color="none" id="page1-list-item7" [hidden]="menu3 == 0">
+      <ion-thumbnail item-left>
+        <img src="assets/img/xN7MjWeFSEOBF9GNazes_test1.jpg" imageViewer />
+      </ion-thumbnail>
+      <h2>
+        nem
+        
+      </h2>
+      <h2>
+        體原文保存「原
+      </h2>
+            <h2>
+        {{ price3 }} đ
+      </h2>
+
+      <ion-note item-right  color="secondary" [hidden]="menu3 == 0"> 
+        {{ menu3 }}
+      </ion-note>
+
+
+    </ion-item >
+    <ion-item color="none" id="page1-list-item8" [hidden]="menu4 == 0">
+      <ion-thumbnail item-left>
+        <img src="assets/img/I5c0m0WT12kxq04ShNmL_test2.jpg" imageViewer />
+      </ion-thumbnail>
+      <h2>
+        cơm
+        
+      </h2>
+            <h2>
+        繁體字保存
+      </h2>
+            <h2>
+        {{ price4 }} đ
+      </h2>
+
+      <ion-note item-right  color="secondary" [hidden]="menu4 == 0"> 
+        {{ menu4 }}
+      </ion-note>
+
+
+    </ion-item>
+    <ion-item color="none" id="page1-list-item9" [hidden]="menu5 == 0">
+      <ion-thumbnail item-left>
+        <img src="assets/img/xN7MjWeFSEOBF9GNazes_test1.jpg" imageViewer />
+      </ion-thumbnail>
+      <h2>
+        nem
+        
+      </h2>
+                  <h2>
+        字轉換產生
+      </h2>
+            <h2>
+        {{ price5 }} đ
+      </h2>
+
+      <ion-note item-right  color="secondary" [hidden]="menu5 == 0"> 
+        {{ menu5 }}
+      </ion-note>
+
+
+    </ion-item>
+    <ion-item color="none" id="page1-list-item10" [hidden]="menu6 == 0">
+      <ion-thumbnail item-left>
+        <img src="assets/img/I5c0m0WT12kxq04ShNmL_test2.jpg" imageViewer />
+      </ion-thumbnail>
+      <h2>
+        cơm
+      </h2>
+                        <h2>
+        等鹿, 鹿
+      </h2>
+            <h2>
+        {{ price6 }} đ
+      </h2>
+
+      <ion-note item-right  color="secondary" [hidden]="menu6 == 0"> 
+        {{ menu6 }}
+      </ion-note>
+
+    </ion-item>
+
+        <ion-item color="none" id="page1-list-item13" [hidden]="menu7 == 0">
+      <ion-thumbnail item-left>
+        <img src="assets/img/trau_luoc.jpg" imageViewer />
+      </ion-thumbnail>
+      <h2>
+        trâu luộc nguyên con
+      </h2>
+                        <h2>
+        等鹿, 鹿
+      </h2>
+            <h2>
+        {{ price7 }} đ
+      </h2>
+
+      <ion-note item-right  color="secondary" [hidden]="menu7 == 0"> 
+        {{ menu7 }}
+      </ion-note>
+
+    </ion-item>
+
+        <ion-item color="none" id="page1-list-item14" [hidden]="menu8 == 0">
+      <ion-thumbnail item-left>
+        <img src="assets/img/trau_xao.jpg" imageViewer />
+      </ion-thumbnail>
+      <h2>
+        trâu xào 7 món
+      </h2>
+                        <h2>
+        可通過每頁左上角的連結隨時調整
+      </h2>
+            <h2>
+        {{ price7 }} đ
+      </h2>
+
+      <ion-note item-right  color="secondary" [hidden]="menu8 == 0"> 
+        {{ menu8 }}
+      </ion-note>
+
+    </ion-item>
+  </ion-list>
+</ion-content>
