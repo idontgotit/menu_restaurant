@@ -5,7 +5,8 @@ import { MyApp } from './app.component';
 import { Page1Page } from '../pages/page1/page1';
 import { CartPage } from '../pages/cart/cart';
 import { CloudPage } from '../pages/cloud/cloud';
-
+import { SoupPage } from '../pages/soup/soup';
+import { SaladPage } from '../pages/salad/salad';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,7 +20,9 @@ import { SelectionPageModule } from '../pages/selection/selection.module';
     MyApp,
     Page1Page,
     CartPage,
-    CloudPage
+    CloudPage,
+    SoupPage,
+    SaladPage
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,9 @@ import { SelectionPageModule } from '../pages/selection/selection.module';
     MyApp,
     Page1Page,
     CartPage,
-    CloudPage
+    CloudPage,
+    SoupPage,
+    SaladPage
   ],
   providers: [
     StatusBar,

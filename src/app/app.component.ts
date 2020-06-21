@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 
 
+import { CartPage } from '../pages/cart/cart';
 import { Page1Page } from '../pages/page1/page1';
 
 
@@ -14,7 +15,7 @@ import { Page1Page } from '../pages/page1/page1';
 })
 export class MyApp {
   @ViewChild(Nav) navCtrl: Nav;
-    rootPage:any = Page1Page;
+    rootPage:any = CartPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -27,5 +28,9 @@ export class MyApp {
   goToPage1(params){
     if (!params) params = {};
     this.navCtrl.setRoot(Page1Page);
+  }
+  goToPageMenu(params){
+    if (!params) params = {};
+    this.navCtrl.setRoot(CartPage);
   }
 }
