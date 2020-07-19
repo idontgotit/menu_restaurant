@@ -5,6 +5,7 @@ import { NewModalPage } from '../new-modal/new-modal';
 import { SelectionPage } from '../selection/selection';
 
 import { NavController, ModalController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-page1',
@@ -40,7 +41,7 @@ export class Page1Page {
 
 
 
-  constructor(public navCtrl: NavController,public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public storage: Storage,) {
     this.menu1 =  0;
 
     this.menu2 =  0;
@@ -74,13 +75,65 @@ export class Page1Page {
     }
 
     this.total = "0"
+    this.storage.get('current_total').then((val) => {
+      console.log('current_total is', val);
+      if (val !=null){
+        this.total = parseInt(val)
+      }
+    });
   }
 
+  buildObjectData(){
+    let obj1 = {
+      menu : this.menu1,
+      price: this.price1
+     }
+     let obj2 = {
+      menu : this.menu2,
+      price: this.price2
+     }
+     let obj3 = {
+      menu : this.menu3,
+      price: this.price3
+     }
+     let obj4 = {
+      menu : this.menu4,
+      price: this.price4
+     }
+     let obj5 = {
+      menu : this.menu5,
+      price: this.price5
+     }
+     let obj6 = {
+      menu : this.menu6,
+      price: this.price6
+     }
+ 
+     let obj7 = {
+       menu: this.menu7,
+       price: this.price7,
+       image: this.image7,
+       name: this.name7,
+       select_object: this.select_object7
+     }
+ 
+     let data = []
+     data.push(obj1)
+     data.push(obj2)
+     data.push(obj3)
+     data.push(obj4)
+     data.push(obj5)
+     data.push(obj6)
+     data.push(obj7)
+     return data
+  }
 
-
-  increaseValue(event:string, name_value?:string, price?:string){   
-   this[name_value]++
-   this.total = parseInt(this.total) +  parseInt(price.replace('.',''))
+  increaseValue(event: string, name_value?: string, price?: string) {
+    this[name_value]++
+    this.total = parseInt(this.total) + parseInt(price.replace('.', ''))
+    this.storage.set('current_total', this.total);
+    let data = this.buildObjectData()
+    this.storage.set('current_data', data);
   }
 
   decreaseValue(event:string, name_value?:string, price?:string){
@@ -95,52 +148,16 @@ export class Page1Page {
         }
       }
    }
+   this.storage.set('current_total', this.total);
+   let data = this.buildObjectData()
+   this.storage.set('current_data', data);
 
   }
 
   openModal() {
 
-    let obj1 = {
-     menu : this.menu1,
-     price: this.price1
-    }
-    let obj2 = {
-     menu : this.menu2,
-     price: this.price2
-    }
-    let obj3 = {
-     menu : this.menu3,
-     price: this.price3
-    }
-    let obj4 = {
-     menu : this.menu4,
-     price: this.price4
-    }
-    let obj5 = {
-     menu : this.menu5,
-     price: this.price5
-    }
-    let obj6 = {
-     menu : this.menu6,
-     price: this.price6
-    }
 
-    let obj7 = {
-      menu: this.menu7,
-      price: this.price7,
-      image: this.image7,
-      name: this.name7,
-      select_object: this.select_object7
-    }
-
-    let data = []
-    data.push(obj1)
-    data.push(obj2)
-    data.push(obj3)
-    data.push(obj4)
-    data.push(obj5)
-    data.push(obj6)
-    data.push(obj7)
+    let data = this.buildObjectData()
 
 
     const profileModal = this.modalCtrl.create(NewModalPage, { data: data },);

@@ -7,6 +7,8 @@ import { CartPage } from '../pages/cart/cart';
 import { CloudPage } from '../pages/cloud/cloud';
 import { SoupPage } from '../pages/soup/soup';
 import { SaladPage } from '../pages/salad/salad';
+import { SoupSaladPage } from '../pages/soup-salad/soup-salad';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -14,6 +16,7 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { NewModalPageModule } from '../pages/new-modal/new-modal.module';
 
 import { SelectionPageModule } from '../pages/selection/selection.module';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -22,23 +25,26 @@ import { SelectionPageModule } from '../pages/selection/selection.module';
     CartPage,
     CloudPage,
     SoupPage,
-    SaladPage
+    SaladPage,
+    SoupSaladPage
   ],
   imports: [
     BrowserModule,
     IonicImageViewerModule,
     NewModalPageModule,
     SelectionPageModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    Page1Page,
+    Page1Page,  
     CartPage,
     CloudPage,
     SoupPage,
-    SaladPage
+    SaladPage,
+    SoupSaladPage
   ],
   providers: [
     StatusBar,

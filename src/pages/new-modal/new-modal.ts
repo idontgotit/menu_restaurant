@@ -2,7 +2,7 @@
  
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
- 
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the NewModalPage page.
  *
@@ -40,27 +40,48 @@ export class NewModalPage {
     public viewCtrl: ViewController,
     public navCtrl: NavController,
     public navParams: NavParams,
+    public storage: Storage,
   ) {
     console.log('UserId', navParams.get('data'));
     this.data = navParams.get('data');
 
-	for(let key in this.data){
-	    let menu_text = "menu" + String(parseInt(key)+1)
-	    let price_text = "price" + String(parseInt(key)+1)
+    this.storage.get('current_data').then((val) => {
+      console.log('current_data is', val);
 
-		if (key == "6"){
-			let select_item = this.data[key]
-			this[menu_text] = select_item.select_object[0]
+      if (val != null) {
+        for (let key in val) {
+          let menu_text = "menu" + String(parseInt(key) + 1)
+          let price_text = "price" + String(parseInt(key) + 1)
+  
+          if (key == "6") {
+            let select_item = val[key]
+            this[menu_text] = select_item.select_object[0]
+  
+            this["menu8"] = select_item.select_object[1]
+          } else {
+            this[menu_text] = val[key].menu
+          }
+          // this[menu_text] = val[key].menu
+          this[price_text] = val[key].price
+        }
+      }
+      // for (let key in this.data) {
+      //   let menu_text = "menu" + String(parseInt(key) + 1)
+      //   let price_text = "price" + String(parseInt(key) + 1)
 
-			this["menu8"] = select_item.select_object[1]
-		}else{
-			this[menu_text]  = this.data[key].menu
-		}
+      //   if (key == "6") {
+      //     let select_item = this.data[key]
+      //     this[menu_text] = select_item.select_object[0]
 
-	    this[price_text] = this.data[key].price
-	}
-	
+      //     this["menu8"] = select_item.select_object[1]
+      //   } else {
+      //     this[menu_text] = this.data[key].menu
+      //   }
 
+      //   this[price_text] = this.data[key].price
+      // }
+      this.storage.set('current_data', this.data);
+    });
   }
  
   ionViewDidLoad() {

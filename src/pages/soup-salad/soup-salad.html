@@ -1,0 +1,40 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-buttons start>
+         <!--  <div *ngIf="madalDismissData">
+       Data returned by Modal ::  {{madalDismissData}}
+    </div> -->
+   
+    <button ion-button (click)="openModal()" color="secondary">Order</button>
+  
+        <button ion-button icon-right>
+          <ion-icon name=""></ion-icon>
+          Tổng : {{ total | number:0}}
+        </button>
+      </ion-buttons>
+      <ion-title> Soup Salad Nộm</ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content padding id="page_soud_salad">
+    <ion-list id="cart-list99">
+      <ion-item color="none" on-click="goToSoupSalad()" id="cart-list-item26">
+        <ion-thumbnail item-left>
+          <img />
+        </ion-thumbnail>
+        <h2>
+          Các món Soup
+        </h2>
+      </ion-item>
+      <ion-item color="none" on-click="goToCow()" id="cart-list-item27">
+        <ion-thumbnail item-left>
+          <img />
+        </ion-thumbnail>
+        <h2>
+          Các món salad
+        </h2>
+      </ion-item>
+    </ion-list>
+  </ion-content>

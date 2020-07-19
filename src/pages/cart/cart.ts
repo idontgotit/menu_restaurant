@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { SoupPage } from '../soup/soup';
 import { SaladPage } from '../salad/salad';
+import { SoupSaladPage } from '../soup-salad/soup-salad';
 
 @Component({
   selector: 'page-cart',
@@ -11,10 +11,10 @@ export class CartPage {
 
   constructor(public navCtrl: NavController) {
   }
-  goToSoup(params){
+  goToSoupSalad(params){
     if (!params) params = {};
-    this.navCtrl.push(SoupPage);
-  }goToSalad(params){
+    this.navCtrl.push(SoupSaladPage);
+  }goToCow(params){
     if (!params) params = {};
     this.navCtrl.push(SaladPage);
   }

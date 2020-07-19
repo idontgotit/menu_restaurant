@@ -1,11 +1,220 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>
-      Soup
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-<ion-content padding id="page3"></ion-content>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-buttons start>
+         <!--  <div *ngIf="madalDismissData">
+       Data returned by Modal ::  {{madalDismissData}}
+    </div> -->
+   
+    <button ion-button (click)="openModal()" color="secondary">Order</button>
+  
+        <button ion-button icon-right>
+          <ion-icon name=""></ion-icon>
+          Tổng : {{ total | number:0}}
+        </button>
+      </ion-buttons>
+      <ion-title> Soup </ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content padding id="page1">
+    <ion-list id="page1-list2">
+      <ion-item color="none" id="page1-list-item4">
+        <ion-thumbnail item-left>
+          <img src="assets/img/xN7MjWeFSEOBF9GNazes_test1.jpg" imageViewer />
+        </ion-thumbnail>
+        <h2>
+          nem
+        </h2>
+              <h2>
+          English Tenses
+        </h2>
+              <h2>
+          可通過每頁左上角的連結隨時調整
+        </h2>
+        <h2>
+          {{ price1 }} đ
+        </h2>
+        <ion-note item-right  color="secondary" [hidden]="menu1 == 0"> 
+          {{ menu1 }}
+        </ion-note>
+        <button item-right fill="clear"  (click)='increaseValue($event, "menu1", price1)' style="background-color: transparent;">
+            <ion-icon ios="ios-add-circle" md="md-add-circle" style="zoom:1.7;">
+            </ion-icon>
+        </button>
+  
+        <button item-right fill="clear"  (click)='decreaseValue($event, "menu1", price1)' style="background-color: transparent;">
+            <ion-icon ios="ios-remove-circle" md="md-remove-circle" style="zoom:1.7;"></ion-icon>
+        </button>
+  
+      </ion-item>
+      <ion-item color="none" id="page1-list-item5">
+        <ion-thumbnail item-left>
+          <img src="assets/img/I5c0m0WT12kxq04ShNmL_test2.jpg"  imageViewer />
+        </ion-thumbnail>
+        <h2>
+          cơm
+          
+        </h2>
+        <h2>
+          為了避免由簡體字轉為
+        </h2>
+              <h2>
+          {{ price2 }} đ
+        </h2>
+  
+        <ion-note item-right  color="secondary" [hidden]="menu2 == 0"> 
+          {{ menu2 }}
+        </ion-note>
+        <button item-right fill="clear"  (click)='increaseValue($event, "menu2", price2)' style="background-color: transparent;">
+            <ion-icon ios="ios-add-circle" md="md-add-circle" style="zoom:1.7;">
+            </ion-icon>
+        </button>
+  
+                <button item-right fill="clear"  (click)='decreaseValue($event, "menu2", price2)' style="background-color: transparent;">
+            <ion-icon ios="ios-remove-circle" md="md-remove-circle" style="zoom:1.7;"></ion-icon>
+        </button>
+  
+      </ion-item>
+      <ion-item color="none" id="page1-list-item7">
+        <ion-thumbnail item-left>
+          <img src="assets/img/xN7MjWeFSEOBF9GNazes_test1.jpg" imageViewer />
+        </ion-thumbnail>
+        <h2>
+          nem
+          
+        </h2>
+        <h2>
+          體原文保存「原
+        </h2>
+              <h2>
+          {{ price3 }} đ
+        </h2>
+  
+        <ion-note item-right  color="secondary" [hidden]="menu3 == 0"> 
+          {{ menu3 }}
+        </ion-note>
+        <button item-right fill="clear"  (click)='increaseValue($event, "menu3", price3)' style="background-color: transparent;">
+            <ion-icon ios="ios-add-circle" md="md-add-circle" style="zoom:1.7;">
+            </ion-icon>
+        </button>
+  
+        <button item-right fill="clear"  (click)='decreaseValue($event, "menu3", price3)' style="background-color: transparent;">
+            <ion-icon ios="ios-remove-circle" md="md-remove-circle" style="zoom:1.7;"></ion-icon>
+        </button>
+  
+      </ion-item>
+      <ion-item color="none" id="page1-list-item8">
+        <ion-thumbnail item-left>
+          <img src="assets/img/I5c0m0WT12kxq04ShNmL_test2.jpg" imageViewer />
+        </ion-thumbnail>
+        <h2>
+          cơm
+          
+        </h2>
+              <h2>
+          繁體字保存
+        </h2>
+              <h2>
+          {{ price4 }} đ
+        </h2>
+  
+        <ion-note item-right  color="secondary" [hidden]="menu4 == 0"> 
+          {{ menu4 }}
+        </ion-note>
+        <button item-right fill="clear"  (click)='increaseValue($event, "menu4", price4)' style="background-color: transparent;">
+            <ion-icon ios="ios-add-circle" md="md-add-circle" style="zoom:1.7;">
+            </ion-icon>
+        </button>
+  
+        <button item-right fill="clear"  (click)='decreaseValue($event, "menu4", price4)' style="background-color: transparent;">
+            <ion-icon ios="ios-remove-circle" md="md-remove-circle" style="zoom:1.7;"></ion-icon>
+        </button>
+  
+      </ion-item>
+      <ion-item color="none" id="page1-list-item9">
+        <ion-thumbnail item-left>
+          <img src="assets/img/xN7MjWeFSEOBF9GNazes_test1.jpg" imageViewer />
+        </ion-thumbnail>
+        <h2>
+          nem
+          
+        </h2>
+                    <h2>
+          字轉換產生
+        </h2>
+              <h2>
+          {{ price5 }} đ
+        </h2>
+  
+        <ion-note item-right  color="secondary" [hidden]="menu5 == 0"> 
+          {{ menu5 }}
+        </ion-note>
+        <button item-right fill="clear"  (click)='increaseValue($event, "menu5", price5)' style="background-color: transparent;">
+            <ion-icon ios="ios-add-circle" md="md-add-circle" style="zoom:1.7;">
+            </ion-icon>
+        </button>
+  
+              <button item-right fill="clear"  (click)='decreaseValue($event, "menu5", price5)' style="background-color: transparent;">
+            <ion-icon ios="ios-remove-circle" md="md-remove-circle" style="zoom:1.7;"></ion-icon>
+        </button>
+  
+      </ion-item>
+      <ion-item color="none" id="page1-list-item10">
+        <ion-thumbnail item-left>
+          <img src="assets/img/I5c0m0WT12kxq04ShNmL_test2.jpg" imageViewer />
+        </ion-thumbnail>
+        <h2>
+          cơm
+        </h2>
+                          <h2>
+          等鹿, 鹿
+        </h2>
+              <h2>
+          {{ price6 }} đ
+        </h2>
+  
+        <ion-note item-right  color="secondary" [hidden]="menu6 == 0"> 
+          {{ menu6 }}
+        </ion-note>
+        <button item-right fill="clear"  (click)='increaseValue($event, "menu6", price6)' style="background-color: transparent;">
+            <ion-icon ios="ios-add-circle" md="md-add-circle" style="zoom:1.7;">
+            </ion-icon>
+        </button>
+  
+              <button item-right fill="clear"  (click)='decreaseValue($event, "menu6", price6)' style="background-color: transparent;">
+            <ion-icon ios="ios-remove-circle" md="md-remove-circle" style="zoom:1.7;"></ion-icon>
+        </button>
+      </ion-item>
+  
+      <!-- <ion-item color="none" id="page1-list-item11">
+        <ion-thumbnail item-left>
+          <img src="assets/img/trau.jpg" imageViewer />
+        </ion-thumbnail>
+        <h2>
+          thịt trâu
+        </h2>
+                          <h2>
+          等鹿, 鹿轉換產
+        </h2>
+              <h2>
+          {{ price7 }} đ
+        </h2>
+  
+        <ion-note item-right  color="secondary" [hidden]="menu7 == 0"> 
+          {{ menu7 }}
+        </ion-note>
+        <button item-right fill="clear"  (click)="openSelection(obj7)" style="background-color: transparent;">
+            <ion-icon ios="ios-add-circle" md="md-add-circle" style="zoom:1.7;">
+            </ion-icon>
+        </button>
+  
+          <button item-right fill="clear"  (click)='decreaseValue($event, "menu7", price7)' style="background-color: transparent;">
+            <ion-icon ios="ios-remove-circle" md="md-remove-circle" style="zoom:1.7;"></ion-icon>
+        </button>
+      </ion-item> -->
+  
+  
+    </ion-list>
+  </ion-content>
