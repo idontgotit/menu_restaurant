@@ -8,7 +8,7 @@ import { CloudPage } from '../pages/cloud/cloud';
 import { SoupPage } from '../pages/soup/soup';
 import { SaladPage } from '../pages/salad/salad';
 import { SoupSaladPage } from '../pages/soup-salad/soup-salad';
-
+import { CowPage } from '../pages/cow/cow';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -26,7 +26,8 @@ import { IonicStorageModule } from '@ionic/storage';
     CloudPage,
     SoupPage,
     SaladPage,
-    SoupSaladPage
+    SoupSaladPage,
+    CowPage
   ],
   imports: [
     BrowserModule,
@@ -44,7 +45,8 @@ import { IonicStorageModule } from '@ionic/storage';
     CloudPage,
     SoupPage,
     SaladPage,
-    SoupSaladPage
+    SoupSaladPage,
+    CowPage
   ],
   providers: [
     StatusBar,
