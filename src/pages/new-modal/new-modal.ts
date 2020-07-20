@@ -42,7 +42,7 @@ export class NewModalPage {
     public navParams: NavParams,
     public storage: Storage,
   ) {
-    console.log('UserId', navParams.get('data'));
+    console.log('data', navParams.get('data'));
     this.data = navParams.get('data');
 
     this.storage.get('current_data').then((val) => {
@@ -53,34 +53,11 @@ export class NewModalPage {
           let menu_text = "menu" + String(parseInt(key) + 1)
           let price_text = "price" + String(parseInt(key) + 1)
   
-          if (key == "6") {
-            let select_item = val[key]
-            this[menu_text] = select_item.select_object[0]
-  
-            this["menu8"] = select_item.select_object[1]
-          } else {
-            this[menu_text] = val[key].menu
-          }
-          // this[menu_text] = val[key].menu
+          this[menu_text] = val[key].menu
           this[price_text] = val[key].price
         }
       }
-      // for (let key in this.data) {
-      //   let menu_text = "menu" + String(parseInt(key) + 1)
-      //   let price_text = "price" + String(parseInt(key) + 1)
-
-      //   if (key == "6") {
-      //     let select_item = this.data[key]
-      //     this[menu_text] = select_item.select_object[0]
-
-      //     this["menu8"] = select_item.select_object[1]
-      //   } else {
-      //     this[menu_text] = this.data[key].menu
-      //   }
-
-      //   this[price_text] = this.data[key].price
-      // }
-      this.storage.set('current_data', this.data);
+      // this.storage.set('current_data', this.data);
     });
   }
  
@@ -89,12 +66,18 @@ export class NewModalPage {
   }
  
   dismissModal() {
-    let data = { 'foo': 'bar' };
+    // let data = { 'foo': 'bar' };
+    let data = {  };
     this.viewCtrl.dismiss(data);
   }
 
   backPage() {
   	this.navCtrl.popToRoot();
+  }
+
+  clearStorage(){
+    this.storage.clear();
+    this.dismissModal()
   }
  
 }

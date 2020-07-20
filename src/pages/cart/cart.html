@@ -3,6 +3,15 @@
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
+      <ion-buttons start>
+   
+        <button ion-button (click)="openModal()" color="secondary">Order</button>
+      
+            <button ion-button icon-right>
+              <ion-icon name=""></ion-icon>
+              Tổng : {{ total | number:0}}
+            </button>
+        </ion-buttons>
       <ion-title>
         Menu
       </ion-title>
