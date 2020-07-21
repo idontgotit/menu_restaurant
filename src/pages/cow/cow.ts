@@ -64,13 +64,37 @@ export class CowPage {
   increaseValue(event:string, name_value?:string, price?:string){   
     this[name_value]++
     this.total = parseInt(this.total) +  parseInt(price.replace('.',''))
+    let data = this.buildObjectData()
+    this.storage.set('current_data', data);
    }
  
    decreaseValue(event:string, name_value?:string, price?:string){
     if (this[name_value] > 0) {
        this[name_value]--
        this.total = parseInt(this.total) -  parseInt(price.replace('.',''))
+       let data = this.buildObjectData()
+       this.storage.set('current_data', data);
     }
+  }
+
+  buildObjectData(){
+    let obj1 = {
+      menu : this.menu1,
+      price: this.price1,
+      name: "Trâu luộc",
+      image_url:"assets/img/trau_luoc_la.jpg"
+     }
+     let obj2 = {
+      menu : this.menu2,
+      price: this.price2,
+      name: "Bò xào",
+      image_url:"assets/img/bo_xao_can.jpg"
+     }
+ 
+     let data = []
+     data.push(obj1)
+     data.push(obj2)
+     return data
   }
 
   openModal() {
@@ -78,12 +102,14 @@ export class CowPage {
     let obj1 = {
       menu : this.menu1,
       price: this.price1,
-      name: "trau_luoc"
+      name: "Trâu luộc",
+      image_url:"assets/img/trau_luoc_la.jpg"
      }
      let obj2 = {
       menu : this.menu2,
       price: this.price2,
-      name: "bo_xao"
+      name: "Bò xào",
+      image_url:"assets/img/bo_xao_can.jpg"
      }
 
      let data = []

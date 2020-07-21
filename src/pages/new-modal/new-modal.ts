@@ -16,7 +16,7 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'new-modal.html',
 })
 export class NewModalPage {
- 
+  current_data: Array<any>;
   data: any;
  
   menu1: any;
@@ -44,18 +44,21 @@ export class NewModalPage {
   ) {
     console.log('data', navParams.get('data'));
     this.data = navParams.get('data');
+    this.current_data = []
 
     this.storage.get('current_data').then((val) => {
       console.log('current_data is', val);
 
       if (val != null) {
-        for (let key in val) {
-          let menu_text = "menu" + String(parseInt(key) + 1)
-          let price_text = "price" + String(parseInt(key) + 1)
+        debugger
+        this.current_data = val
+        // for (let key in val) {
+        //   let menu_text = "menu" + String(parseInt(key) + 1)
+        //   let price_text = "price" + String(parseInt(key) + 1)
   
-          this[menu_text] = val[key].menu
-          this[price_text] = val[key].price
-        }
+        //   this[menu_text] = val[key].menu
+        //   this[price_text] = val[key].price
+        // }
       }
       // this.storage.set('current_data', this.data);
     });

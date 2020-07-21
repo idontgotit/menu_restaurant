@@ -89,6 +89,7 @@ export class SoupPage {
    this.storage.set('current_total', this.total);
    let data = this.buildObjectData()
    this.storage.set('current_data', data);
+   console.log(this.storage.get('current_data'));
   }
 
   decreaseValue(event:string, name_value?:string, price?:string){
@@ -106,12 +107,14 @@ export class SoupPage {
     let obj1 = {
       menu : this.menu1,
       price: this.price1,
-      name: "soup_thit"
+      name: "Soup thịt",
+      image_url:"assets/img/soup_thit.jpg"
      }
      let obj2 = {
       menu : this.menu2,
       price: this.price2,
-      name: "soup_ga"
+      name: "Soup gà",
+      image_url:"assets/img/soup_ga.jpg"
      }
  
      let data = []
@@ -122,49 +125,7 @@ export class SoupPage {
 
   openModal() {
 
-    let obj1 = {
-     menu : this.menu1,
-     price: this.price1,
-     name: "soup_thit"
-    }
-    let obj2 = {
-     menu : this.menu2,
-     price: this.price2,
-     name: "soup_ga"
-    }
-    // let obj3 = {
-    //  menu : this.menu3,
-    //  price: this.price3
-    // }
-    // let obj4 = {
-    //  menu : this.menu4,
-    //  price: this.price4
-    // }
-    // let obj5 = {
-    //  menu : this.menu5,
-    //  price: this.price5
-    // }
-    // let obj6 = {
-    //  menu : this.menu6,
-    //  price: this.price6
-    // }
-
-    // let obj7 = {
-    //   menu: this.menu7,
-    //   price: this.price7,
-    //   image: this.image7,
-    //   name: this.name7,
-    //   select_object: this.select_object7
-    // }
-
-    let data = []
-    data.push(obj1)
-    data.push(obj2)
-    // data.push(obj3)
-    // data.push(obj4)
-    // data.push(obj5)
-    // data.push(obj6)
-    // data.push(obj7)
+    
 
 
     const profileModal = this.modalCtrl.create(NewModalPage, { },);

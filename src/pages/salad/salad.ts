@@ -65,13 +65,38 @@ export class SaladPage {
   increaseValue(event:string, name_value?:string, price?:string){   
     this[name_value]++
     this.total = parseInt(this.total) +  parseInt(price.replace('.',''))
+    this.storage.set('current_total', this.total);
+    let data = this.buildObjectData()
+    this.storage.set('current_data', data);
    }
  
    decreaseValue(event:string, name_value?:string, price?:string){
     if (this[name_value] > 0) {
        this[name_value]--
        this.total = parseInt(this.total) -  parseInt(price.replace('.',''))
+       let data = this.buildObjectData()
+       this.storage.set('current_data', data);
     }
+  }
+
+  buildObjectData(){
+    let obj1 = {
+      menu : this.menu1,
+      price: this.price1,
+      name: "Salad củ cải",
+      image_url:"assets/img/salad_cu_cai.jpg"
+     }
+     let obj2 = {
+      menu : this.menu2,
+      price: this.price2,
+      name: "Salad dưa chuột",
+      image_url:"assets/img/salad_dua_chuot.jpg"
+     }
+ 
+     let data = []
+     data.push(obj1)
+     data.push(obj2)
+     return data
   }
 
   openModal() {
@@ -80,12 +105,14 @@ export class SaladPage {
     let obj1 = {
       menu : this.menu1,
       price: this.price1,
-      name: "salad_cu_cai"
+      name: "Salad củ cải",
+      image_url:"assets/img/salad_cu_cai.jpg"
      }
      let obj2 = {
       menu : this.menu2,
       price: this.price2,
-      name: "salad_dua_chuot"
+      name: "Salad dưa chuột",
+      image_url:"assets/img/salad_dua_chuot.jpg"
      }
 
 
