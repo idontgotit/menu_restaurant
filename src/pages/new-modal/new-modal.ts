@@ -50,7 +50,6 @@ export class NewModalPage {
       console.log('current_data is', val);
 
       if (val != null) {
-        debugger
         this.current_data = val
         // for (let key in val) {
         //   let menu_text = "menu" + String(parseInt(key) + 1)
