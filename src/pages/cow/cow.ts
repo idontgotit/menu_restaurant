@@ -119,8 +119,24 @@ export class CowPage {
     profileModal.onDidDismiss(data => {
       console.log(data);
       this.modalDismissData = JSON.stringify(data);
+      this.calculateTotal()
     });
 
     profileModal.present();
+  }
+
+  calculateTotal(){
+    this.storage.get('current_total').then((val) => {
+      console.log('current_total is', val);
+      if (val != null) {
+        this.total = parseInt(val)
+      }else{
+        this.total = 0
+      }
+    });
+  }
+
+  ionViewDidEnter() {
+    this.calculateTotal()
   }
 }

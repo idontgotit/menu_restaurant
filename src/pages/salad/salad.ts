@@ -101,32 +101,29 @@ export class SaladPage {
 
   openModal() {
 
-    
-    let obj1 = {
-      menu : this.menu1,
-      price: this.price1,
-      name: "Salad củ cải",
-      image_url:"assets/img/salad_cu_cai.jpg"
-     }
-     let obj2 = {
-      menu : this.menu2,
-      price: this.price2,
-      name: "Salad dưa chuột",
-      image_url:"assets/img/salad_dua_chuot.jpg"
-     }
 
-
-     let data = []
-     data.push(obj1)
-     data.push(obj2)
-
-    const profileModal = this.modalCtrl.create(NewModalPage, { data: data },);
+    const profileModal = this.modalCtrl.create(NewModalPage, {  },);
     profileModal.onDidDismiss(data => {
       console.log(data);
       this.modalDismissData = JSON.stringify(data);
+      this.calculateTotal()
     });
 
     profileModal.present();
   }
   
+  calculateTotal(){
+    this.storage.get('current_total').then((val) => {
+      console.log('current_total is', val);
+      if (val != null) {
+        this.total = parseInt(val)
+      }else{
+        this.total = 0
+      }
+    });
+  }
+
+  ionViewDidEnter() {
+    this.calculateTotal()
+  }
 }
