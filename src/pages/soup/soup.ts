@@ -105,27 +105,23 @@ export class SoupPage {
       menu: this.menu1,
       price: this.price1,
       name: "Soup thịt",
-      image_url: "assets/img/soup_thit.jpg"
+      image_url: "assets/img/soup_thit.jpg",
+      count_param : "menu1"
     }
     let obj2 = {
       menu: this.menu2,
       price: this.price2,
       name: "Soup gà",
-      image_url: "assets/img/soup_ga.jpg"
+      image_url: "assets/img/soup_ga.jpg",
+      count_param : "menu2"
     }
-    return this.storage.get('current_data').then((val) => {
-      console.log('current_data is', val);
-      if (val != null) {
-        data = val
-      }
-      data.push(obj1)
-      data.push(obj2)
-      return data
-    });
+    data.push(obj1)
+    data.push(obj2)
+    return data
   }
 
   openModal() {
-    this.buildObjectData().then(data => {
+    this.buildStoreCurrentData().then(data => {
       this.storage.set('current_data', data);
       const profileModal = this.modalCtrl.create(NewModalPage, {}, );
       profileModal.onDidDismiss(data => {
@@ -157,7 +153,7 @@ export class SoupPage {
 
   ionViewCanLeave() {
     return new Promise((resolve, reject) => {
-      this.buildObjectData().then(data => {
+      this.buildStoreCurrentData().then(data => {
         this.storage.set('current_data', data);
         resolve();
       });
@@ -177,7 +173,56 @@ export class SoupPage {
 
   ionViewDidEnter() {
     this.calculateTotal()
+    this.loadStorageData()
   }
+
+  buildStoreCurrentData(){
+    let data = this.buildObjectData()
+    return this.storage.get('current_data').then((val) => {
+      console.log('current_data is', val);
+      let result_return = [];
+      if (val != null) {
+        val.forEach((item, index) => {
+          let temp_url = item.image_url
+          let exists_items = data.filter(function(item_data) {
+            return item_data.image_url.indexOf(temp_url) >= 0;
+          });
+          if (exists_items){
+            exists_items.map(o => {
+              return o;
+            }).forEach(item => result_return.push(item));
+          }else{
+            result_return.push(item)
+          }
+        });
+      } else {
+        result_return = data
+      }
+      return result_return
+    });
+  }
+
+  loadStorageData(){
+    let data = this.buildObjectData()
+    this.storage.get('current_data').then((val) => {
+      if (val != null) {
+        val.forEach((item, index) => {
+          let temp_url = item.image_url
+          let exists_items = data.filter(function(item_data) {
+            return item_data.image_url.indexOf(temp_url) >= 0;
+          });
+          if (exists_items){
+            exists_items.forEach((item_exists, index) => {
+              this[item_exists.count_param] = item.menu
+            });
+
+          }
+        });
+      }
+    });
+  }
+
+
 }
 
 

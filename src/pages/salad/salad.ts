@@ -84,13 +84,15 @@ export class SaladPage {
       menu : this.menu1,
       price: this.price1,
       name: "Salad củ cải",
-      image_url:"assets/img/salad_cu_cai.jpg"
+      image_url:"assets/img/salad_cu_cai.jpg",
+      count_param : "menu1"
      }
      let obj2 = {
       menu : this.menu2,
       price: this.price2,
       name: "Salad dưa chuột",
-      image_url:"assets/img/salad_dua_chuot.jpg"
+      image_url:"assets/img/salad_dua_chuot.jpg",
+      count_param : "menu2"
      }
  
      let data = []
@@ -99,17 +101,17 @@ export class SaladPage {
      return data
   }
 
+
   openModal() {
-
-
-    const profileModal = this.modalCtrl.create(NewModalPage, {  },);
-    profileModal.onDidDismiss(data => {
-      console.log(data);
-      this.modalDismissData = JSON.stringify(data);
-      this.calculateTotal()
+    this.buildStoreCurrentData().then(data => {
+      this.storage.set('current_data', data);
+      const profileModal = this.modalCtrl.create(NewModalPage, {}, );
+      profileModal.onDidDismiss(data => {
+        this.modalDismissData = JSON.stringify(data);
+        this.calculateTotal()
+      });
+      profileModal.present();
     });
-
-    profileModal.present();
   }
   
   calculateTotal(){
@@ -125,5 +127,52 @@ export class SaladPage {
 
   ionViewDidEnter() {
     this.calculateTotal()
+    this.loadStorageData()
+  }
+
+  buildStoreCurrentData(){
+    let data = this.buildObjectData()
+    return this.storage.get('current_data').then((val) => {
+      console.log('current_data is', val);
+      let result_return = [];
+      if (val != null) {
+        val.forEach((item, index) => {
+          let temp_url = item.image_url
+          let exists_items = data.filter(function(item_data) {
+            return item_data.image_url.indexOf(temp_url) >= 0;
+          });
+          if (exists_items){
+            exists_items.map(o => {
+              return o;
+            }).forEach(item => result_return.push(item));
+          }else{
+            result_return.push(item)
+          }
+        });
+      } else {
+        result_return = data
+      }
+      return result_return
+    });
+  }
+
+  loadStorageData(){
+    let data = this.buildObjectData()
+    this.storage.get('current_data').then((val) => {
+      if (val != null) {
+        val.forEach((item, index) => {
+          let temp_url = item.image_url
+          let exists_items = data.filter(function(item_data) {
+            return item_data.image_url.indexOf(temp_url) >= 0;
+          });
+          if (exists_items){
+            exists_items.forEach((item_exists, index) => {
+              this[item_exists.count_param] = item.menu
+            });
+
+          }
+        });
+      }
+    });
   }
 }
