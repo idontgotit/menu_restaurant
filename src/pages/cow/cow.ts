@@ -52,29 +52,25 @@ export class CowPage {
 
 
     this.total = "0"
-    this.storage.get('current_total').then((val) => {
-      console.log('current_total is', val);
-      if (val !=null){
-        this.total = parseInt(val)
-      }
-    });
+    this.calculateTotal()
+    this.loadStorageData()
   }
 
   
-  increaseValue(event:string, name_value?:string, price?:string){   
+  increaseValue(event: string, name_value?: string, price?: string) {
     this[name_value]++
-    this.total = parseInt(this.total) +  parseInt(price.replace('.',''))
-    let data = this.buildObjectData()
-    this.storage.set('current_data', data);
-   }
- 
-   decreaseValue(event:string, name_value?:string, price?:string){
+    this.total = parseInt(this.total) + parseInt(price.replace('.', ''))
+    this.storage.set('current_total', this.total);
+  }
+
+  decreaseValue(event: string, name_value?: string, price?: string) {
     if (this[name_value] > 0) {
-       this[name_value]--
-       this.total = parseInt(this.total) -  parseInt(price.replace('.',''))
-       let data = this.buildObjectData()
-       this.storage.set('current_data', data);
+      this[name_value]--
+      this.total = parseInt(this.total) - parseInt(price.replace('.', ''))
+      this.storage.set('current_total', this.total);
+
     }
+
   }
 
   buildObjectData(){
@@ -111,6 +107,15 @@ export class CowPage {
     });
   }
 
+  ionViewCanLeave() {
+    return new Promise((resolve, reject) => {
+      this.buildStoreCurrentData().then(data => {
+        this.storage.set('current_data', data);
+        resolve();
+      });
+    });
+  }
+
   calculateTotal(){
     this.storage.get('current_total').then((val) => {
       console.log('current_total is', val);
@@ -118,6 +123,10 @@ export class CowPage {
         this.total = parseInt(val)
       }else{
         this.total = 0
+        let data = this.buildObjectData()
+        data.forEach((item, index) => {
+          this[item.count_param] = 0
+        });
       }
     });
   }
@@ -138,7 +147,8 @@ export class CowPage {
           let exists_items = data.filter(function(item_data) {
             return item_data.image_url.indexOf(temp_url) >= 0;
           });
-          if (exists_items){
+          if (exists_items.length > 0){
+            debugger
             exists_items.map(o => {
               return o;
             }).forEach(item => result_return.push(item));
@@ -146,6 +156,19 @@ export class CowPage {
             result_return.push(item)
           }
         });
+
+        data.forEach((item, index) => {
+          let temp_url = item.image_url
+          let exists_items = result_return.filter(function(item_data) {
+            return item_data.image_url.indexOf(temp_url) >= 0;
+          });
+          if (exists_items.length > 0){
+
+          }else{
+            result_return.push(item)
+          }
+        });
+
       } else {
         result_return = data
       }
@@ -162,7 +185,7 @@ export class CowPage {
           let exists_items = data.filter(function(item_data) {
             return item_data.image_url.indexOf(temp_url) >= 0;
           });
-          if (exists_items){
+          if (exists_items.length > 0){
             exists_items.forEach((item_exists, index) => {
               this[item_exists.count_param] = item.menu
             });

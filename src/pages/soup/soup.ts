@@ -10,7 +10,7 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'soup.html'
 })
 export class SoupPage {
-  madalDismissData: any;
+  modalDismissData: any;
   selectionDismissData: any;
   menu1: any;
   menu2: any;
@@ -73,12 +73,8 @@ export class SoupPage {
     }
 
     this.total = "0"
-    this.storage.get('current_total').then((val) => {
-      console.log('current_total is', val);
-      if (val != null) {
-        this.total = parseInt(val)
-      }
-    });
+    this.calculateTotal()
+    this.loadStorageData()
   }
 
 
@@ -125,7 +121,7 @@ export class SoupPage {
       this.storage.set('current_data', data);
       const profileModal = this.modalCtrl.create(NewModalPage, {}, );
       profileModal.onDidDismiss(data => {
-        this.madalDismissData = JSON.stringify(data);
+        this.modalDismissData = JSON.stringify(data);
         this.calculateTotal()
       });
       profileModal.present();
@@ -167,6 +163,10 @@ export class SoupPage {
         this.total = parseInt(val)
       }else{
         this.total = 0
+        let data = this.buildObjectData()
+        data.forEach((item, index) => {
+          this[item.count_param] = 0
+        });
       }
     });
   }
@@ -187,7 +187,8 @@ export class SoupPage {
           let exists_items = data.filter(function(item_data) {
             return item_data.image_url.indexOf(temp_url) >= 0;
           });
-          if (exists_items){
+          if (exists_items.length > 0){
+            debugger
             exists_items.map(o => {
               return o;
             }).forEach(item => result_return.push(item));
@@ -195,6 +196,19 @@ export class SoupPage {
             result_return.push(item)
           }
         });
+
+        data.forEach((item, index) => {
+          let temp_url = item.image_url
+          let exists_items = result_return.filter(function(item_data) {
+            return item_data.image_url.indexOf(temp_url) >= 0;
+          });
+          if (exists_items.length > 0){
+
+          }else{
+            result_return.push(item)
+          }
+        });
+
       } else {
         result_return = data
       }
@@ -211,7 +225,7 @@ export class SoupPage {
           let exists_items = data.filter(function(item_data) {
             return item_data.image_url.indexOf(temp_url) >= 0;
           });
-          if (exists_items){
+          if (exists_items.length > 0){
             exists_items.forEach((item_exists, index) => {
               this[item_exists.count_param] = item.menu
             });
@@ -221,6 +235,7 @@ export class SoupPage {
       }
     });
   }
+
 
 
 }
