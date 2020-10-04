@@ -35,6 +35,8 @@ export class NewModalPage {
   price5: any;
   price6: any;
   price7: any;
+  total: any;
+  
 
   constructor(
     public viewCtrl: ViewController,
@@ -60,6 +62,16 @@ export class NewModalPage {
         // }
       }
       // this.storage.set('current_data', this.data);
+    });
+
+
+    this.storage.get('current_total').then((val) => {
+      console.log('current_total is', val);
+      if (val != null && !isNaN(val)) {
+        this.total = parseInt(val)
+      }else{
+        this.total = 0
+      }
     });
   }
  

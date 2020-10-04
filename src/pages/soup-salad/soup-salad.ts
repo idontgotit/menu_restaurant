@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 import { NewModalPage } from '../new-modal/new-modal';
 
-import { SelectionPage } from '../selection/selection';
+
 import { SoupPage } from '../soup/soup'
 import { SaladPage } from '../salad/salad';
 
@@ -18,7 +18,7 @@ export class SoupSaladPage {
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, public storage: Storage,) {
 
-    this.total = "0"
+    this.total = 0
     this.storage.get('current_total').then((val) => {
       console.log('current_total is', val);
       if (val !=null){
@@ -51,7 +51,7 @@ export class SoupSaladPage {
   calculateTotal(){
     this.storage.get('current_total').then((val) => {
       console.log('current_total is', val);
-      if (val != null) {
+      if (val != null && !isNaN(val)) {
         this.total = parseInt(val)
       }else{
         this.total = 0

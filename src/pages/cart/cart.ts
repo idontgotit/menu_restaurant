@@ -14,7 +14,7 @@ export class CartPage {
   total: any;
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController,  public storage: Storage,) {
-    this.total = "0"
+    this.total = 0
   }
   goToSoupSalad(params){
     if (!params) params = {};
@@ -40,7 +40,7 @@ export class CartPage {
   calculateTotal(){
     this.storage.get('current_total').then((val) => {
       console.log('current_total is', val);
-      if (val != null) {
+      if (val != null && !isNaN(val)) {
         this.total = parseInt(val)
       }else{
         this.total = 0

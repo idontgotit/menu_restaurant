@@ -12,7 +12,7 @@
   
         <button ion-button icon-right>
           <ion-icon name=""></ion-icon>
-          Tổng : {{ total | number:0}}
+         
         </button>
       </ion-buttons>
       <ion-title> Soup </ion-title>
@@ -24,21 +24,20 @@
         <ion-thumbnail item-left>
           <img src="assets/img/soup_thit.jpg" imageViewer />
         </ion-thumbnail>
-        <h2>
+        <h2 item-left>
           Soup thịt
-        </h2>
-              <h2>
+          <br>
           English Tenses
-        </h2>
-              <h2>
-          可通過每頁左上角的連結隨時調整
-        </h2>
-        <h2>
-          {{ price1 }} đ
-        </h2>
-        <ion-note item-right  color="secondary" [hidden]="menu1 == 0"> 
-          {{ menu1 }}
-        </ion-note>
+          <br>
+          為了避免由簡體字轉為
+          <br>
+          {{ price1 }} đ/ đĩa
+      </h2>
+
+        <button item-right fill="clear"   style="background-color: transparent;">
+          <ion-input item-right fill="clear"  type="number"  maxlength="5" [(ngModel)]="menu1"
+           (ionBlur)='blurValue("menu1", price1)' (ionFocus)='focusValue("menu1", price1)'></ion-input>
+      </button>
         <button item-right fill="clear"  (click)='increaseValue($event, "menu1", price1)' style="background-color: transparent;">
             <ion-icon ios="ios-add-circle" md="md-add-circle" style="zoom:1.7;">
             </ion-icon>
@@ -53,20 +52,21 @@
         <ion-thumbnail item-left>
           <img src="assets/img/soup_ga.jpg"  imageViewer />
         </ion-thumbnail>
-        <h2>
+
+        <h2 item-left>
           Soup gà
-          
-        </h2>
-        <h2>
+          <br>
+          English Tenses
+          <br>
           為了避免由簡體字轉為
-        </h2>
-              <h2>
-          {{ price2 }} đ
-        </h2>
+          <br>
+          {{ price1 }} đ/ đĩa
+      </h2>
   
-        <ion-note item-right  color="secondary" [hidden]="menu2 == 0"> 
-          {{ menu2 }}
-        </ion-note>
+        <button item-right fill="clear"   style="background-color: transparent;">
+          <ion-input item-right fill="clear"  type="number"  maxlength="5" [(ngModel)]="menu2"
+           (ionBlur)='blurValue("menu2", price2)' (ionFocus)='focusValue("menu2", price2)'></ion-input>
+       </button>
         <button item-right fill="clear"  (click)='increaseValue($event, "menu2", price2)' style="background-color: transparent;">
             <ion-icon ios="ios-add-circle" md="md-add-circle" style="zoom:1.7;">
             </ion-icon>

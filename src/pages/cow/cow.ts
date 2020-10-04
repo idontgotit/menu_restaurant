@@ -51,7 +51,7 @@ export class CowPage {
     this.price7 = "110.000"
 
 
-    this.total = "0"
+    this.total = 0
     this.calculateTotal()
     this.loadStorageData()
   }
@@ -65,12 +65,34 @@ export class CowPage {
 
   decreaseValue(event: string, name_value?: string, price?: string) {
     if (this[name_value] > 0) {
+      let number_will_decrease = 1
       this[name_value]--
-      this.total = parseInt(this.total) - parseInt(price.replace('.', ''))
+      if (this[name_value] < 0) {
+        number_will_decrease = 1 + this[name_value]
+        this[name_value] = 0
+      }
+      this.total = parseInt(this.total) - parseFloat(price.replace('.', '')) * number_will_decrease
       this.storage.set('current_total', this.total);
 
     }
 
+  }
+
+  blurValue(name_value?: string, price?: string) {
+
+    let temp_price: number;
+    this[name_value] = parseFloat(this[name_value])
+    temp_price = parseFloat(price.replace('.', '')) * this[name_value]
+    this.total = parseFloat(this.total) + temp_price
+    this.storage.set('current_total', this.total);
+  }
+
+  focusValue(name_value?: string, price?: string) {
+
+    let temp_price: number;
+    temp_price = parseFloat(price.replace('.', '')) * this[name_value]
+    this.total = parseFloat(this.total) - temp_price
+    this.storage.set('current_total', this.total);
   }
 
   buildObjectData(){
@@ -119,7 +141,7 @@ export class CowPage {
   calculateTotal(){
     this.storage.get('current_total').then((val) => {
       console.log('current_total is', val);
-      if (val != null) {
+      if (val != null && !isNaN(val)) {
         this.total = parseInt(val)
       }else{
         this.total = 0
@@ -179,7 +201,7 @@ export class CowPage {
   loadStorageData(){
     let data = this.buildObjectData()
     this.storage.get('current_data').then((val) => {
-      if (val != null) {
+      if (val != null && !isNaN(val)) {
         val.forEach((item, index) => {
           let temp_url = item.image_url
           let exists_items = data.filter(function(item_data) {

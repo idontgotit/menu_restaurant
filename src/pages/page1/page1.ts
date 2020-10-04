@@ -74,7 +74,7 @@ export class Page1Page {
       select_object: this.select_object7
     }
 
-    this.total = "0"
+    this.total = 0
     this.storage.get('current_total').then((val) => {
       console.log('current_total is', val);
       if (val !=null){
@@ -83,6 +83,23 @@ export class Page1Page {
     });
   }
 
+  blurValue(name_value?: string, price?: string) {
+
+    let temp_price: number;
+    this[name_value] = parseFloat(this[name_value])
+    temp_price = parseFloat(price.replace('.', '')) * this[name_value]
+    this.total = parseFloat(this.total) + temp_price
+    this.storage.set('current_total', this.total);
+  }
+
+  focusValue(name_value?: string, price?: string) {
+
+    let temp_price: number;
+    temp_price = parseFloat(price.replace('.', '')) * this[name_value]
+    this.total = parseFloat(this.total) - temp_price
+    this.storage.set('current_total', this.total);
+  }
+  
   buildObjectData(){
     let obj1 = {
       menu : this.menu1,

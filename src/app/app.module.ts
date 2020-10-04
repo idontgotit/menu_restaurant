@@ -1,6 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { FormsModule } from '@angular/forms';
 import { MyApp } from './app.component';
 import { Page1Page } from '../pages/page1/page1';
 import { CartPage } from '../pages/cart/cart';
@@ -34,6 +35,7 @@ import { IonicStorageModule } from '@ionic/storage';
   imports: [
     BrowserModule,
     IonicImageViewerModule,
+    FormsModule,
     NewModalPageModule,
     SelectionPageModule,
     IonicModule.forRoot(MyApp),

@@ -10,7 +10,7 @@ import { Storage } from '@ionic/storage';
 })
 export class SaladPage {
   modalDismissData: any;
-  selectionDismissData:any;
+  selectionDismissData: any;
   menu1: any;
   menu2: any;
   menu3: any;
@@ -31,16 +31,16 @@ export class SaladPage {
   total: any;
 
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public storage: Storage,) {
-    this.menu1 =  0;
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public storage: Storage, ) {
+    this.menu1 = 0;
 
-    this.menu2 =  0;
-    this.menu3 =  0;
-    this.menu4 =  0;
-    this.menu5 =  0;
-    this.menu6 =  0;
-    this.menu7 =  0;
-    this.menu8 =  0;
+    this.menu2 = 0;
+    this.menu3 = 0;
+    this.menu4 = 0;
+    this.menu5 = 0;
+    this.menu6 = 0;
+    this.menu7 = 0;
+    this.menu8 = 0;
 
 
     this.price1 = "50.000"
@@ -52,7 +52,7 @@ export class SaladPage {
     this.price7 = "110.000"
 
 
-    this.total = "0"
+    this.total = 0
     this.calculateTotal()
     this.loadStorageData()
   }
@@ -64,35 +64,58 @@ export class SaladPage {
   }
 
   decreaseValue(event: string, name_value?: string, price?: string) {
+    debugger
     if (this[name_value] > 0) {
+      let number_will_decrease = 1
       this[name_value]--
-      this.total = parseInt(this.total) - parseInt(price.replace('.', ''))
+      if (this[name_value] < 0) {
+        number_will_decrease = 1 + this[name_value]
+        this[name_value] = 0
+      }
+      this.total = parseInt(this.total) - parseFloat(price.replace('.', '')) * number_will_decrease
       this.storage.set('current_total', this.total);
 
     }
 
   }
 
-  buildObjectData(){
+  blurValue(name_value?: string, price?: string) {
+
+    let temp_price: number;
+    this[name_value] = parseFloat(this[name_value])
+    temp_price = parseFloat(price.replace('.', '')) * this[name_value]
+    this.total = parseFloat(this.total) + temp_price
+    this.storage.set('current_total', this.total);
+  }
+
+  focusValue(name_value?: string, price?: string) {
+
+    let temp_price: number;
+    temp_price = parseFloat(price.replace('.', '')) * this[name_value]
+    this.total = parseFloat(this.total) - temp_price
+    this.storage.set('current_total', this.total);
+  }
+
+  buildObjectData() {
     let obj1 = {
-      menu : this.menu1,
+      menu: this.menu1,
       price: this.price1,
       name: "Salad củ cải",
-      image_url:"assets/img/salad_cu_cai.jpg",
-      count_param : "menu1"
-     }
-     let obj2 = {
-      menu : this.menu2,
+      image_url: "assets/img/salad_cu_cai.jpg",
+      count_param: "menu1"
+    }
+    let obj2 = {
+      menu: this.menu2,
       price: this.price2,
       name: "Salad dưa chuột",
-      image_url:"assets/img/salad_dua_chuot.jpg",
-      count_param : "menu2"
-     }
- 
-     let data = []
-     data.push(obj1)
-     data.push(obj2)
-     return data
+      image_url: "assets/img/salad_dua_chuot.jpg",
+      count_param: "menu2"
+    }
+
+    let data = []
+    data.push(obj1)
+    data.push(obj2)
+    return data
   }
 
 
@@ -117,13 +140,13 @@ export class SaladPage {
       });
     });
   }
-  
-  calculateTotal(){
+
+  calculateTotal() {
     this.storage.get('current_total').then((val) => {
       console.log('current_total is', val);
-      if (val != null) {
+      if (val != null && !isNaN(val)) {
         this.total = parseInt(val)
-      }else{
+      } else {
         this.total = 0
         let data = this.buildObjectData()
         data.forEach((item, index) => {
@@ -138,7 +161,7 @@ export class SaladPage {
     this.loadStorageData()
   }
 
-  buildStoreCurrentData(){
+  buildStoreCurrentData() {
     let data = this.buildObjectData()
     return this.storage.get('current_data').then((val) => {
       console.log('current_data is', val);
@@ -146,27 +169,26 @@ export class SaladPage {
       if (val != null) {
         val.forEach((item, index) => {
           let temp_url = item.image_url
-          let exists_items = data.filter(function(item_data) {
+          let exists_items = data.filter(function (item_data) {
             return item_data.image_url.indexOf(temp_url) >= 0;
           });
-          if (exists_items.length > 0){
-            debugger
+          if (exists_items.length > 0) {
             exists_items.map(o => {
               return o;
             }).forEach(item => result_return.push(item));
-          }else{
+          } else {
             result_return.push(item)
           }
         });
 
         data.forEach((item, index) => {
           let temp_url = item.image_url
-          let exists_items = result_return.filter(function(item_data) {
+          let exists_items = result_return.filter(function (item_data) {
             return item_data.image_url.indexOf(temp_url) >= 0;
           });
-          if (exists_items.length > 0){
+          if (exists_items.length > 0) {
 
-          }else{
+          } else {
             result_return.push(item)
           }
         });
@@ -178,16 +200,16 @@ export class SaladPage {
     });
   }
 
-  loadStorageData(){
+  loadStorageData() {
     let data = this.buildObjectData()
     this.storage.get('current_data').then((val) => {
-      if (val != null) {
+      if (val != null && !isNaN(val)) {
         val.forEach((item, index) => {
           let temp_url = item.image_url
-          let exists_items = data.filter(function(item_data) {
+          let exists_items = data.filter(function (item_data) {
             return item_data.image_url.indexOf(temp_url) >= 0;
           });
-          if (exists_items.length > 0){
+          if (exists_items.length > 0) {
             exists_items.forEach((item_exists, index) => {
               this[item_exists.count_param] = item.menu
             });
