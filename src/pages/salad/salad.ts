@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 import { NewModalPage } from '../new-modal/new-modal';
 
@@ -29,6 +29,11 @@ export class SaladPage {
   price7: any;
 
   total: any;
+  hide1: any;
+  hide2: any;
+
+  @ViewChild('menu1Id') menu1Id ;
+  @ViewChild('menu2Id') menu2Id ;
 
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, public storage: Storage, ) {
@@ -50,6 +55,8 @@ export class SaladPage {
     this.price5 = "90.000"
     this.price6 = "100.000"
     this.price7 = "110.000"
+    this.hide1 = true;
+    this.hide2 = true;
 
 
     this.total = 0
@@ -57,14 +64,27 @@ export class SaladPage {
     this.loadStorageData()
   }
 
+  focusElement(inputElement) {
+    setTimeout(() => {
+      
+      inputElement.setFocus();
+    }, 100);
+  }
   increaseValue(event: string, name_value?: string, price?: string) {
-    this[name_value]++
-    this.total = parseInt(this.total) + parseInt(price.replace('.', ''))
-    this.storage.set('current_total', this.total);
+    // this[name_value]++
+    // this.total = parseInt(this.total) + parseInt(price.replace('.', ''))
+    // this.storage.set('current_total', this.total);
+    if (name_value == "menu1") {
+      this.hide1 = false;
+      this.focusElement(this.menu1Id)
+    } else {
+      this.hide2 = false;
+      this.focusElement(this.menu2Id)
+    }
+
   }
 
   decreaseValue(event: string, name_value?: string, price?: string) {
-    debugger
     if (this[name_value] > 0) {
       let number_will_decrease = 1
       this[name_value]--
@@ -86,6 +106,9 @@ export class SaladPage {
     temp_price = parseFloat(price.replace('.', '')) * this[name_value]
     this.total = parseFloat(this.total) + temp_price
     this.storage.set('current_total', this.total);
+
+    this.hide1 = true;
+    this.hide2 = true;
   }
 
   focusValue(name_value?: string, price?: string) {

@@ -33,10 +33,11 @@
           <br>
           {{ price1 }} đ/ Phần
       </h2>
-      <button item-right fill="clear"   style="background-color: transparent;">
-        <ion-input item-right fill="clear"  type="number"  maxlength="5" [(ngModel)]="menu1"
+      <button item-right fill="clear"   style="background-color: transparent;" [hidden]="hide1">
+        <ion-input item-right fill="clear"  type="number"  maxlength="5" [(ngModel)]="menu1" #menu1Id
          (ionBlur)='blurValue("menu1", price1)' (ionFocus)='focusValue("menu1", price1)'></ion-input>
     </button>
+    <label item-right [hidden]="!hide1"> {{menu1}} </label>
       <button item-right fill="clear"  (click)='increaseValue($event, "menu1", price1)' style="background-color: transparent;">
           <ion-icon ios="ios-add-circle" md="md-add-circle" style="zoom:1.7;">
           </ion-icon>
@@ -62,10 +63,12 @@
           {{ price1 }} đ/ Phần
       </h2>
   
-        <button item-right fill="clear"   style="background-color: transparent;">
-          <ion-input item-right fill="clear"  type="number"  maxlength="5" [(ngModel)]="menu2"
+        <button item-right fill="clear"   style="background-color: transparent;" [hidden]="hide2">
+          <ion-input item-right fill="clear"  type="number"  maxlength="5" [(ngModel)]="menu2" #menu2Id
            (ionBlur)='blurValue("menu2", price2)' (ionFocus)='focusValue("menu2", price2)'></ion-input>
        </button>
+
+       <label item-right [hidden]="!hide2"> {{menu2}} </label>
       <button item-right fill="clear"  (click)='increaseValue($event, "menu2", price2)' style="background-color: transparent;">
           <ion-icon ios="ios-add-circle" md="md-add-circle" style="zoom:1.7;">
           </ion-icon>

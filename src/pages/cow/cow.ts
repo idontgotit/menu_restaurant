@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 import { NewModalPage } from '../new-modal/new-modal';
 
@@ -30,6 +30,13 @@ export class CowPage {
   price7: any;
 
   total: any;
+  hide1: any;
+  hide2: any;
+
+  @ViewChild('menu1Id') menu1Id ;
+  @ViewChild('menu2Id') menu2Id ;
+
+
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, public storage: Storage,) {
     this.menu1 =  0;
 
@@ -54,13 +61,30 @@ export class CowPage {
     this.total = 0
     this.calculateTotal()
     this.loadStorageData()
+
+    this.hide1 = true;
+    this.hide2 = true;
   }
 
   
+  focusElement(inputElement) {
+    setTimeout(() => {
+      
+      inputElement.setFocus();
+    }, 100);
+  }
   increaseValue(event: string, name_value?: string, price?: string) {
-    this[name_value]++
-    this.total = parseInt(this.total) + parseInt(price.replace('.', ''))
-    this.storage.set('current_total', this.total);
+    // this[name_value]++
+    // this.total = parseInt(this.total) + parseInt(price.replace('.', ''))
+    // this.storage.set('current_total', this.total);
+    if (name_value == "menu1") {
+      this.hide1 = false;
+      this.focusElement(this.menu1Id)
+    } else {
+      this.hide2 = false;
+      this.focusElement(this.menu2Id)
+    }
+
   }
 
   decreaseValue(event: string, name_value?: string, price?: string) {
@@ -85,6 +109,8 @@ export class CowPage {
     temp_price = parseFloat(price.replace('.', '')) * this[name_value]
     this.total = parseFloat(this.total) + temp_price
     this.storage.set('current_total', this.total);
+    this.hide1 = true;
+    this.hide2 = true;
   }
 
   focusValue(name_value?: string, price?: string) {

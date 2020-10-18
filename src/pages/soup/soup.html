@@ -1,85 +1,86 @@
 <ion-header>
-    <ion-navbar>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <ion-buttons start>
-         <!--  <div *ngIf="madalDismissData">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons start>
+      <!--  <div *ngIf="madalDismissData">
        Data returned by Modal ::  {{madalDismissData}}
     </div> -->
-   
-    <button ion-button (click)="openModal()" color="secondary">Order</button>
-  
-        <button ion-button icon-right>
-          <ion-icon name=""></ion-icon>
-         
-        </button>
-      </ion-buttons>
-      <ion-title> Soup </ion-title>
-    </ion-navbar>
-  </ion-header>
-  <ion-content padding id="page1">
-    <ion-list id="page1-list2">
-      <ion-item color="none" id="page1-list-item4">
-        <ion-thumbnail item-left>
-          <img src="assets/img/soup_thit.jpg" imageViewer />
-        </ion-thumbnail>
-        <h2 item-left>
-          Soup thịt
-          <br>
-          English Tenses
-          <br>
-          為了避免由簡體字轉為
-          <br>
-          {{ price1 }} đ/ đĩa
-      </h2>
 
-        <button item-right fill="clear"   style="background-color: transparent;">
-          <ion-input item-right fill="clear"  type="number"  maxlength="5" [(ngModel)]="menu1"
-           (ionBlur)='blurValue("menu1", price1)' (ionFocus)='focusValue("menu1", price1)'></ion-input>
+      <button ion-button (click)="openModal()" color="secondary">Order</button>
+
+      <button ion-button icon-right>
+        <ion-icon name=""></ion-icon>
+
       </button>
-        <button item-right fill="clear"  (click)='increaseValue($event, "menu1", price1)' style="background-color: transparent;">
-            <ion-icon ios="ios-add-circle" md="md-add-circle" style="zoom:1.7;">
-            </ion-icon>
-        </button>
-  
-        <button item-right fill="clear"  (click)='decreaseValue($event, "menu1", price1)' style="background-color: transparent;">
-            <ion-icon ios="ios-remove-circle" md="md-remove-circle" style="zoom:1.7;"></ion-icon>
-        </button>
-  
-      </ion-item>
-      <ion-item color="none" id="page1-list-item5">
-        <ion-thumbnail item-left>
-          <img src="assets/img/soup_ga.jpg"  imageViewer />
-        </ion-thumbnail>
-
-        <h2 item-left>
-          Soup gà
-          <br>
-          English Tenses
-          <br>
-          為了避免由簡體字轉為
-          <br>
-          {{ price1 }} đ/ đĩa
+    </ion-buttons>
+    <ion-title> Soup </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page1">
+  <ion-list id="page1-list2">
+    <ion-item color="none" id="page1-list-item4">
+      <ion-thumbnail item-left>
+        <img src="assets/img/soup_thit.jpg" imageViewer />
+      </ion-thumbnail>
+      <h2 item-left>
+        Soup thịt
+        <br> English Tenses
+        <br> 為了避免由簡體字轉為
+        <br> {{ price1 }} đ/ đĩa
       </h2>
-  
-        <button item-right fill="clear"   style="background-color: transparent;">
-          <ion-input item-right fill="clear"  type="number"  maxlength="5" [(ngModel)]="menu2"
-           (ionBlur)='blurValue("menu2", price2)' (ionFocus)='focusValue("menu2", price2)'></ion-input>
-       </button>
-        <button item-right fill="clear"  (click)='increaseValue($event, "menu2", price2)' style="background-color: transparent;">
-            <ion-icon ios="ios-add-circle" md="md-add-circle" style="zoom:1.7;">
-            </ion-icon>
-        </button>
-  
-                <button item-right fill="clear"  (click)='decreaseValue($event, "menu2", price2)' style="background-color: transparent;">
-            <ion-icon ios="ios-remove-circle" md="md-remove-circle" style="zoom:1.7;"></ion-icon>
-        </button>
-  
-      </ion-item>
 
-  
-  
-  
-    </ion-list>
-  </ion-content>
+      <button item-right fill="clear" style="background-color: transparent;"  [hidden]="hide1">
+        <ion-input item-right fill="clear" type="number" maxlength="5" [(ngModel)]="menu1" #menu1Id
+         (ionBlur)='blurValue("menu1", price1)'
+          (ionFocus)='focusValue("menu1", price1)'></ion-input>
+      </button>
+
+      <label item-right [hidden]="!hide1"> {{menu1}} </label>
+      <button item-right fill="clear" (click)='increaseValue($event, "menu1", price1)' style="background-color: transparent;">
+        <ion-icon ios="ios-add-circle" md="md-add-circle" style="zoom:1.7;">
+        </ion-icon>
+      </button>
+
+      <button item-right fill="clear" (click)='decreaseValue($event, "menu1", price1)' style="background-color: transparent;">
+        <ion-icon ios="ios-remove-circle" md="md-remove-circle" style="zoom:1.7;"></ion-icon>
+      </button>
+
+    </ion-item>
+    <ion-item color="none" id="page1-list-item5">
+      <ion-thumbnail item-left>
+        <img src="assets/img/soup_ga.jpg" imageViewer />
+      </ion-thumbnail>
+
+      <h2 item-left>
+        Soup gà
+        <br> English Tenses
+        <br> 為了避免由簡體字轉為
+        <br> {{ price1 }} đ/ đĩa
+      </h2>
+
+      <button item-right fill="clear" style="background-color: transparent;"  [hidden]="hide2">
+        <ion-input item-right fill="clear" type="number" maxlength="5" #menu2Id
+         [(ngModel)]="menu2" (ionBlur)='blurValue("menu2", price2)'
+          (ionFocus)='focusValue("menu2", price2)'></ion-input>
+      </button>
+
+      <label item-right [hidden]="!hide2"> {{menu2}} </label>
+
+      <button item-right fill="clear" (click)='increaseValue($event, "menu2", price2)' style="background-color: transparent;">
+        <ion-icon ios="ios-add-circle" md="md-add-circle" style="zoom:1.7;">
+        </ion-icon>
+      </button>
+
+      <button item-right fill="clear" (click)='decreaseValue($event, "menu2", price2)' style="background-color: transparent;">
+        <ion-icon ios="ios-remove-circle" md="md-remove-circle" style="zoom:1.7;"></ion-icon>
+      </button>
+
+    </ion-item>
+
+
+
+
+  </ion-list>
+</ion-content>
